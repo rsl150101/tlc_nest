@@ -8,9 +8,9 @@ import {
   Put,
 } from '@nestjs/common';
 import { BoardService } from './board.service';
-import { CreateArticleDto } from './create-article.dto';
-import { DeleteArticleDto } from './delete-article.dto';
-import { UpdateArticleDto } from './update-article.dto';
+import { CreateArticleDto } from './dto/create-article.dto';
+import { DeleteArticleDto } from './dto/delete-article.dto';
+import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Controller('board') //- routing path is /board -> e.g. http://localhost:3000/board
 export class BoardController {

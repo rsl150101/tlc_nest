@@ -3,10 +3,17 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import _ from 'lodash';
+import { Repository } from 'typeorm';
+import { Article } from './article.entity';
 
 @Injectable()
 export class BoardService {
+  constructor(
+    @InjectRepository(Article) private articleRepository: Repository<Article>,
+  ) {}
+
   private articles = [];
   private articlePasswords = new Map(); //- 파이썬의 딕셔너리와 유사한 자료구조
 
