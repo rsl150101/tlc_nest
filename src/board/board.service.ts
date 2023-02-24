@@ -18,7 +18,7 @@ export class BoardService {
   // private articlePasswords = new Map(); //- 파이썬의 딕셔너리와 유사한 자료구조
 
   async getArticles() {
-    await this.articleRepository.find({
+    return await this.articleRepository.find({
       where: { deletedAt: null },
       select: ['id', 'author', 'title', 'createdAt'],
     });
@@ -57,7 +57,7 @@ export class BoardService {
     // }
 
     // const article = await this.getArticleById(id);
-    this.verifyPassword(id, password);
+    await this.verifyPassword(id, password);
 
     // article.title = title;
     // article.content = content;
@@ -68,7 +68,7 @@ export class BoardService {
     // if (this.articlePasswords.get(id) !== password) {
     //   throw new UnauthorizedException('Password is not correct. id: ' + id);
     // }
-    this.verifyPassword(id, password);
+    await this.verifyPassword(id, password);
 
     // this.articles = this.articles.filter((article) => article.id !== id);
     this.articleRepository.softDelete(id);
@@ -85,7 +85,7 @@ export class BoardService {
     }
 
     if (article.password !== password.toString()) {
-      throw new UnauthorizedException('Password is not correct. id: ' + id);
+      throw new UnauthorizedException(`Password is not correct. id: ${id}`);
     }
   }
 }

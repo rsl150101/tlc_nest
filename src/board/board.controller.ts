@@ -19,15 +19,15 @@ export class BoardController {
 
   //+ 게시물 목록 가져오기
   @Get('/articles')
-  getArticles() {
-    return this.boardService.getArticles();
+  async getArticles() {
+    return await this.boardService.getArticles();
   }
 
   //+ 게시물 상세 보기
   @Get('/articles/:id')
-  getArticleById(@Param('id') articleId: number) {
+  async getArticleById(@Param('id') articleId: number) {
     //- @Param : 클라이언트가 전달하는 url 변수를 나타내는 데코레이터
-    return this.boardService.getArticleById(articleId);
+    return await this.boardService.getArticleById(articleId);
   }
 
   //+ 게시물 생성
@@ -43,11 +43,11 @@ export class BoardController {
 
   //+ 게시물 수정
   @Put('/articles/:id')
-  updateArticle(
+  async updateArticle(
     @Param('id') articleId: number,
     @Body() data: UpdateArticleDto,
   ) {
-    return this.boardService.updateArticle(
+    return await this.boardService.updateArticle(
       articleId,
       data.title,
       data.content,
@@ -57,10 +57,10 @@ export class BoardController {
 
   //+ 게시물 삭제
   @Delete('/articles/:id')
-  deleteArticle(
+  async deleteArticle(
     @Param('id') articleId: number,
     @Body() data: DeleteArticleDto,
   ) {
-    return this.boardService.deleteArticle(articleId, data.password);
+    return await this.boardService.deleteArticle(articleId, data.password);
   }
 }
