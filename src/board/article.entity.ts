@@ -19,7 +19,7 @@ export class Article {
   title: string;
 
   @Column('varchar', { length: 1000 })
-  conent: string;
+  content: string;
 
   @Column('varchar', { select: false })
   password: string;
